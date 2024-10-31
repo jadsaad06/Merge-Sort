@@ -1,4 +1,8 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <random>
+#include <ctime>
+#include <algorithm>
 
 using namespace std;
 
@@ -43,7 +47,7 @@ void merge(vector<int>& arr, int left, int mid, int right){
     }
 
     while(j < n2){
-        arr[k] =  LArr[j];
+        arr[k] =  RArr[j];
         j++;
         k++;
     }
