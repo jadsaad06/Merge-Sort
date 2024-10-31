@@ -1,8 +1,9 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
 
 using namespace std;
 
-void merge(vector<int> arr, int left, int mid, int right){
+void merge(vector<int>& arr, int left, int mid, int right){
     int n1 = mid - left + 1; //array 1 size
     int n2 = right - mid; //array 2 size
 
@@ -49,16 +50,15 @@ void merge(vector<int> arr, int left, int mid, int right){
     }
 }
 
-void mergeSort(vector<int> arr, int size){
+
+void mergeSort(vector<int>& arr, int size){
     int currSize;
     int left;
 
-    for(currSize = 1; currSize <= size-1; currSize = 2 * currSize){ // start small, double size everytime
-
-        for(left = 0; left < size-1; left += 2 * currSize){
-            int mid = min(left + currSize - 1, size);
-            int right = min(left + 2 * currSize - 1, size);
-
+    for(currSize = 1; currSize <= size-1; currSize = 2 * currSize){
+        for(left = 0; left < size - 1; left += 2 * currSize){
+            int mid = min(left + currSize - 1, size - 1); 
+            int right = min(left + 2 * currSize - 1, size - 1); 
             merge(arr, left, mid, right);
         }
     }
@@ -66,6 +66,19 @@ void mergeSort(vector<int> arr, int size){
 
 int main(){
     vector<int> arr = {9,6,7,8,2,3,4,1,5,0};
+    int size = arr.size();
+
+    cout << "Given array:\n";
+    for(int i : arr){
+        cout << i << " ";
+    }
+
+    mergeSort(arr, size);
+
+    cout << "\nMerge Sorted Array:\n";
+    for(int i : arr){
+        cout << i << " ";
+    }
 
     return 0;
 }
