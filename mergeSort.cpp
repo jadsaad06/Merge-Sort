@@ -1,5 +1,4 @@
-#include <iostream>
-#include <vector>
+#include <bits/stdc++.h>
 
 using namespace std;
 
@@ -36,7 +35,7 @@ void merge(vector<int>& arr, int left, int mid, int right){
         k++;
     }
 
-    //if subarrays are odd, copy the rest
+    //copy the rest of the subarrays if needed
     while(i < n1){
         arr[k] =  LArr[i];
         i++;
@@ -64,20 +63,43 @@ void mergeSort(vector<int>& arr, int size){
     }
 }
 
-int main(){
-    vector<int> arr = {9,6,7,8,2,3,4,1,5,0};
-    int size = arr.size();
+void genVector(vector<int>& arr){
+    srand(time(0));
 
-    cout << "Given array:\n";
-    for(int i : arr){
-        cout << i << " ";
+    int size = rand() % 21;
+
+    for(int i = 0; i < size; i++){
+         int num = rand() % 51;
+
+        arr.push_back(num);
     }
+}
 
-    mergeSort(arr, size);
+int main(){
+    for(int i = 0; i < 10; i++){
+        vector<int> arr;
+        genVector(arr);
 
-    cout << "\nMerge Sorted Array:\n";
-    for(int i : arr){
-        cout << i << " ";
+        vector<int> arr2 = arr;  // Copy arr into arr2
+
+        mergeSort(arr, arr.size());
+        sort(arr2.begin(), arr2.end());
+
+        if(arr == arr2) {
+            cout << "True" << " ";
+        } else {
+            cout << "False" << " ";
+            
+            for(int j : arr){
+                cout << j << " ";
+            }
+            
+            cout << endl;
+
+            for(int j : arr2){
+                cout << j << " ";
+            }
+        }
     }
 
     return 0;
