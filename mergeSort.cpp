@@ -7,8 +7,8 @@
 using namespace std;
 
 void merge(vector<int>& arr, int left, int mid, int right){
-    int n1 = mid - left + 1; //array 1 size
-    int n2 = right - mid; //array 2 size
+    int n1 = mid - left + 1; 
+    int n2 = right - mid; 
 
     vector<int> LArr(n1);
     vector<int> RArr(n2);
@@ -67,11 +67,7 @@ void mergeSort(vector<int>& arr, int size){
     }
 }
 
-void genVector(vector<int>& arr){
-    srand(time(0));
-
-    int size = rand() % 21;
-
+void genVector(vector<int>& arr, int size){
     for(int i = 0; i < size; i++){
          int num = rand() % 51;
 
@@ -81,29 +77,18 @@ void genVector(vector<int>& arr){
 
 int main(){
     for(int i = 0; i < 10; i++){
+        clock_t start = clock();
         vector<int> arr;
-        genVector(arr);
+        int size = pow(10, i);
 
+        genVector(arr, size);
         vector<int> arr2 = arr;  // Copy arr into arr2
 
         mergeSort(arr, arr.size());
-        sort(arr2.begin(), arr2.end());
+        clock_t end = clock();
 
-        if(arr == arr2) {
-            cout << "True" << " ";
-        } else {
-            cout << "False" << " ";
-            
-            for(int j : arr){
-                cout << j << " ";
-            }
-            
-            cout << endl;
-
-            for(int j : arr2){
-                cout << j << " ";
-            }
-        }
+        double duration = (double)(end - start) / CLOCKS_PER_SEC;
+        cout << "Time taken by function: " << duration << " seconds" << endl;
     }
 
     return 0;
